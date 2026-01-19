@@ -16,10 +16,14 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>HomePage()),
+      if (!mounted) return; // 화면 살아있는지 확인
+
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomePage()),
       );
       //현재화면 지우고 홈 페이지 화면 뛰우
-    })
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -37,3 +41,6 @@ class _SplashPageState extends State<SplashPage> {
 //* initState() → 시작하자마자 실행
 // * Future.delayed → 스플래시 2초 유지
 // * Navigator.pushReplacement → 다음 화면 이동
+
+
+
